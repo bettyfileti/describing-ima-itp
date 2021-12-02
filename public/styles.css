@@ -1,0 +1,165 @@
+/* -------------------------------------------------------------- */
+
+/* HTML Tags */
+
+h1 {
+    font-family: "Work Sans", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    letter-spacing: -0.01em;
+    color: #000000;
+}
+
+h2 {
+    font-family: "Work Sans", sans-serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 32px;
+    line-height: 40px;
+    color: #000000;
+}
+
+body {
+    font-family: "Source Serif Pro", serif;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 14px;
+    line-height: 24px;
+    color: #000000;
+    margin: 0;
+}
+
+/* -------------------------------------------------------------- */
+
+/* Classes */
+
+.center-container {
+    width: 800px;
+    padding: 0 16px 0 16px;
+}
+
+.form-container {
+    background: rgba(255, 255, 255, 0.95);
+    border: 1px solid #4F00D0;
+    box-sizing: border-box;
+    box-shadow: 4px 4px 0px #4F00D0;
+    padding: 0 24px 24px 24px;
+}
+
+.all-descriptions {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.description-container {
+    flex: 1 0 30%; 
+    margin: 8px;
+}
+
+.described-by-common {
+    margin: 24px 0 24px 0;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #FF96FB;
+}
+
+.described-by-student {
+    margin: 24px 0 24px 0;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #FF005C;
+}
+
+.described-by-alumni {
+    margin: 24px 0 24px 0;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #00D0C4;
+}
+
+.described-by-professor {
+    margin: 24px 0 24px 0;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #94DA00;
+}
+
+.described-by-friend {
+    margin: 24px 0 24px 0;
+    padding: 16px;
+    background: #FFFFFF;
+    border: 1px solid #D0BF00;
+}
+
+.the-description p {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 18px;
+    line-height: 24px;
+    color: #000000;
+}
+
+.the-attribution p {
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #000000;
+    letter-spacing: .25px;
+}
+
+.test{
+    border: 4px solid red;
+}
+
+/* -------------------------------------------------------------- */
+
+/* IDs */
+
+#container {
+    width: 100vw;
+    display: flex;
+    justify-content: center;
+    margin-top: 72px;
+    top: 0px;
+    left: 0px;
+}
+
+#top-banner {
+    background-color: #FF96FB;
+    width: 100vw;
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+}
+
+#header {
+    margin-bottom: 64px;
+}
+
+#btn-form {
+    padding: 2px 8px;
+ 
+    background: #4F00D0;
+    border: 1px solid #4F00D0;
+    border-radius: 24px;
+
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 10px;
+    line-height: 16px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+#btn-form:hover{
+    background: blue;
+}

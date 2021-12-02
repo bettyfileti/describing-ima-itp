@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get to know</title>
+
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@300;400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&family=Work+Sans:wght@300;400&display=swap"
+        rel="stylesheet">
+</head>
+
+<body>
+    <div id="top-banner">
+        <div class="center-container">
+            <h1>Get to know ITP / IMA / MA @ NYU</h1>
+        </div>
+    </div>
+
+    <div id="container">
+        <div class="center-container">
+            <div class="half-column">
+                <div id ="header">
+                    <h2>So, what is this program you're in?</h2>
+                    <p>
+                        NYU’s ITP, IMA, and MA programs don’t come with an easy explanation. Check out these attempts at
+                        describing them in 20 words or less or add your own here.
+                    </p>
+                </div>
+            </div>
+
+            <div class="form-container">
+                <h2>Descriptions</h2>
+                <p>In 20 words or less, share your go-to way of describing NYU’s ITP, IMA, or MA programs.</p>
+                <form>
+                    <label for="description-input"></label>
+                    <textarea id="description-input" name="description-input" rows="4" cols="50"></textarea>
+
+                    <p>Where is the description coming from?</p>
+
+                    <!-- Radio Buttons -->
+                    <div class = "where-description-is-from">
+                        <input type="radio" id="common" name="description-type" value="commonly used description">
+                        <label for="common">Commonly used</label>
+                        
+                        <input type="radio" id="student" name="description-type" value="from a student">
+                        <label for="student">Student</label>
+                        
+                        <input type="radio" id="alumni" name="description-type" value="from an alumni">
+                        <label for="alumni">Alumni</label>
+    
+                        <input type="radio" id="professor" name="description-type" value="from a professor">
+                        <label for="professor">Professor</label>
+    
+                        <input type="radio" id="friend" name="description-type" value="from a friend of the program">
+                        <label for="friend">Friend of the program</label>
+                    </div>
+                    
+                    <br>
+                    <button id="btn-form" type="button">Submit</button>
+                    <!-- <input id="btn-form" type="submit" value="Submit"> -->
+                </form>
+            </div>
+
+            <div class = "all-descriptions" id = "allDescriptions" >
+                <div class = "description-container">
+                    <div class = "described-by-common">
+                        
+                        <div class = "the-description">
+                            <p>The center for the recently possible</p>
+                        </div>
+    
+                        <div class = "the-attribution">
+                            <p>(Commonly used description)</p>
+                        </div>
+                    </div>
+    
+                </div>
+
+            </div>
+            
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
