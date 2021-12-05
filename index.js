@@ -29,7 +29,6 @@ app.post('/captureDescription', (req, res) => {
 
 //Used to retrieve data
 app.get('/getDescriptions', (req, res) => {
-
     db.find({}, (err, docs) => {
 
         if (err) {
@@ -50,7 +49,7 @@ app.use ('/', express.static('public'));
 
 //FOR TESTING IT LOCALLY
 // app.listen(5000, () => {
-//     console.log("Listening at localhost: 5000");
+//     console.log("Listening at localhost:5000");
 // });
 //------
 
@@ -58,3 +57,4 @@ app.use ('/', express.static('public'));
 app.listen(process.env.PORT, () => {
     console.log("Listening to");
 });
+

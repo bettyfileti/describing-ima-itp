@@ -25,19 +25,89 @@ body {
     font-family: "Source Serif Pro", serif;
     font-style: normal;
     font-weight: normal;
-    font-size: 14px;
+    font-size: 16px;
     line-height: 24px;
     color: #000000;
     margin: 0;
 }
 
-/* -------------------------------------------------------------- */
+canvas {
+    position: relative;
+    z-index: -3 !important;
+  }
 
-/* Classes */
+/* -------------------------------------------------------------- */
+/* CLASSES */
+
+.btn{
+    padding: 2px 16px;
+
+    background: #4F00D0;
+    border: 3px solid #4F00D0;
+    border-radius: 24px;
+
+    font-family: Work Sans;
+    font-style: normal;
+    font-weight: normal;
+    font-size: 16px;
+    line-height: 24px;
+    text-transform: uppercase;
+    color: #FFFFFF;
+}
+
+.btn:hover, .btn:focus {
+    background: lightblue;
+    color: #4F00D0;
+    border: 3px dotted #4F00D0;
+}
 
 .center-container {
     width: 800px;
     padding: 0 16px 0 16px;
+}
+
+.half-column {
+    background: rgba(255, 255, 255, .65);
+    padding: 24px;
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color:rgba(158, 110, 210, 0.9);
+}
+
+.modal-content{
+    background-color: #ffffff;
+    margin: 15% auto;
+    padding: 24px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 800px;
+}
+
+.close{
+    color: #000000;
+    float: right;
+    padding: 16px;
+    font-size: 28px;
+    font-weight: bold;
+    border: 1px solid #ffffff;
+    border-top-color: #4F00D0; 
+    border-right-color: #4F00D0;
+}
+
+.close:hover, .close:focus{
+    color: #4F00D0;
+    border: 1px dotted #4F00D0; 
+    text-decoration: none;
+    cursor: pointer;
 }
 
 .form-container {
@@ -54,43 +124,43 @@ body {
 }
 
 .description-container {
-    flex: 1 0 30%;
+    flex: 2 0 40%;
     margin: 8px;
 }
 
 .described-by-common {
-    margin: 24px 0 24px 0;
+    margin: 8px 0 0px 0;
     padding: 16px;
     background: #FFFFFF;
-    border: 1px solid #FF96FB;
+    border: 2px solid #FF96FB;
 }
 
 .described-by-student {
-    margin: 24px 0 24px 0;
+    margin: 8px 0 0px 0;
     padding: 16px;
     background: #FFFFFF;
-    border: 1px solid #FF005C;
+    border: 2px solid #FF005C;
 }
 
 .described-by-alumni {
-    margin: 24px 0 24px 0;
+    margin: 8px 0 0px 0;
     padding: 16px;
     background: #FFFFFF;
-    border: 1px solid #00D0C4;
+    border: 2px solid #00D0C4;
 }
 
 .described-by-professor {
-    margin: 24px 0 24px 0;
+    margin: 8px 0 0px 0;
     padding: 16px;
     background: #FFFFFF;
-    border: 1px solid #94DA00;
+    border: 2px solid #94DA00;
 }
 
 .described-by-friend {
-    margin: 24px 0 24px 0;
+    margin: 8px 0 0px 0;
     padding: 16px;
     background: #FFFFFF;
-    border: 1px solid #D0BF00;
+    border: 2px solid #D0BF00;
 }
 
 .the-description p {
@@ -118,7 +188,6 @@ body {
 }
 
 /* -------------------------------------------------------------- */
-
 /* IDs */
 
 #container {
@@ -140,34 +209,27 @@ body {
     justify-content: center;
 }
 
+#bottom-banner {
+    background-color: #4F00D0;
+    width: 100vw;
+    position: absolute;
+    left: 0px;
+    display: flex;
+    justify-content: center;
+    margin-top: 88px;
+}
+
+#bottom-banner p{
+    color: #FFFFFF;
+}
+
 #header {
     margin-bottom: 64px;
 }
 
-#btn-form {
-    padding: 2px 8px;
-
-    background: #4F00D0;
-    border: 1px solid #4F00D0;
-    border-radius: 24px;
-
-    font-family: Work Sans;
-    font-style: normal;
-    font-weight: normal;
-    font-size: 10px;
-    line-height: 16px;
-    text-transform: uppercase;
-    color: #FFFFFF;
-}
-
-#btn-form:hover {
-    background: blue;
-}
-
-
 /* -------------------------------------------------------------- */
 /* Media Queries */
-@media screen and (max-width: 500px) {
+@media screen and (max-width: 600px) {
 
     .all-descriptions {
         flex-direction: column;

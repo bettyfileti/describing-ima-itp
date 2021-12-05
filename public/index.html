@@ -15,6 +15,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Serif+Pro&family=Work+Sans:wght@300;400&display=swap"
         rel="stylesheet">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/p5.js/1.4.0/p5.min.js" integrity="sha512-N4kV7GkNv7QR7RX9YF/olywyIgIwNvfEe2nZtfyj73HdjCUkAfOBDbcuJ/cTaN04JKRnw1YG1wnUyNKMsNgg3g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 </head>
 
 <body>
@@ -27,68 +28,91 @@
     <div id="container">
         <div class="center-container">
             <div class="half-column">
-                <div id ="header">
+                <div id="header">
                     <h2>So, what is this program you're in?</h2>
                     <p>
-                        NYU’s IMA & ITP programs don’t come with an easy explanation. Check out these attempts at
-                        describing them or add your own here.
+                        NYU’s IMA & ITP programs don’t come with an easy explanation. Below, view a collection of attempts at explaining them. 
                     </p>
                 </div>
             </div>
 
-            <div class="form-container">
-                <h2>Descriptions</h2>
-                <p>In 20 words or less, share your go-to way of describing NYU’s ITP or IMA programs.</p>
-                <form>
-                    <label for="description-input"></label>
-                    <textarea id="description-input" name="description-input" rows="4" cols="50"></textarea>
+            <div id="myModal" class="modal">
+                <div class="modal-content">
+                    <span class="close">&times;</span>
 
-                    <p>Where is the description coming from?</p>
+                    <div class="form-container">
+                        <h2>Add My Description</h2>
+                        <p>In 20 words or less, share your go-to way of describing NYU’s ITP or IMA programs.</p>
+                        <form>
+                            <label for="description-input"></label>
+                            <textarea id="description-input" name="description-input" rows="4" cols="50"></textarea>
 
-                    <!-- Radio Buttons -->
-                    <div class = "where-description-is-from">                        
-                        <input type="radio"  id="common" class="description-type" name="description-type" value="">Other <input type="text" id = "other_reason" name="other_reason" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+                            <p>Where is the description coming from?</p>
 
-                        <input type="radio" id="student" class="description-type" name="description-type" value="from a student">
-                        <label for="student">Student</label>
-                        
-                        <input type="radio" id="alumni" class="description-type" name="description-type" value="from an alumni">
-                        <label for="alumni">Alumni</label>
-    
-                        <input type="radio" id="professor" class="description-type" name="description-type" value="from a professor">
-                        <label for="professor">Professor</label>
-    
-                        <input type="radio" id="friend" class="description-type" name="description-type" value="from a friend of the program">
-                        <label for="friend">Friend of the program</label>
+                            <!-- Radio Buttons -->
+                            <div class="where-description-is-from">
+                                <input type="radio" id="common" class="description-type" name="description-type"
+                                    value="">Other <input type="text" id="other_reason"
+                                    name="other_reason" />​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​​
+
+                                <input type="radio" id="student" class="description-type" name="description-type"
+                                    value="from a student">
+                                <label for="student">Student</label>
+
+                                <input type="radio" id="alumni" class="description-type" name="description-type"
+                                    value="from an alumni">
+                                <label for="alumni">Alumni</label>
+
+                                <input type="radio" id="professor" class="description-type" name="description-type"
+                                    value="from a professor">
+                                <label for="professor">Professor</label>
+
+                                <input type="radio" id="friend" class="description-type" name="description-type"
+                                    value="from a friend of the program">
+                                <label for="friend">Friend of the program</label>
+                            </div>
+
+                            <br>
+                            <button id="btn-form" class="btn"type="button">Submit</button>
+                            <!-- <input id="btn-form" type="submit" value="Submit"> -->
+                        </form>
                     </div>
-                    
-                    <br>
-                    <button id="btn-form" type="button">Submit</button>
-                    <!-- <input id="btn-form" type="submit" value="Submit"> -->
-                </form>
+                </div>
             </div>
 
-            <div class = "all-descriptions" id = "allDescriptions" >
-                <div class = "description-container">
-                    <div class = "described-by-common">
-                        
-                        <div class = "the-description">
+            <div class="all-descriptions" id="allDescriptions">
+                <div class="description-container">
+                    <div class="described-by-common">
+
+                        <div class="the-description">
                             <p>The center for the recently possible</p>
                         </div>
-    
-                        <div class = "the-attribution">
+
+                        <div class="the-attribution">
                             <p>Overheard in a class</p>
                         </div>
                     </div>
-    
+
                 </div>
 
             </div>
-            
+            <div>
+                <button id="myBtn" class="btn">Add My Own Description</button>
+            </div>
+        </div>
+
+    </div>
+
+    <div id="bottom-banner">
+        <div class="center-container">
+            <p>Made by Betty Fileti, ©2021</p>
         </div>
     </div>
+
 
     <script src="app.js"></script>
 </body>
 
 </html>
+
+<!-- https://www.w3schools.com/howto/howto_css_modals.asp -->
