@@ -61,9 +61,6 @@ app.use ('/', express.static('public'));
 //------
 
 //FOR DEPLOYING TO HEROKU
-// app.listen(process.env.PORT, () => {
-//     console.log("Listening to");
-// });
 
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
@@ -73,3 +70,13 @@ app.listen(PORT, () => {
 // git add -A .
 // git commit -m "first commit"
 // git push heroku main
+
+
+//--------------------------------------------------------------
+//Next Steps!
+// 1. Ensure better communications across accessibility standards
+// 2. Check user flow of adding descriptions → getting ant/syn
+// 3. Spam/Content Monitoring
+// 4. Clean up interactions on mobile.
+// 5. Speed up overall performance (investigate Event Listeners)
+// 6. Put it into action and get feedback!
