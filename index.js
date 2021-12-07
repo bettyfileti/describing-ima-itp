@@ -53,9 +53,9 @@ app.use ('/', express.static('public'));
 
 
 //FOR TESTING IT LOCALLY
-app.listen(5000, () => {
-    console.log("Listening at localhost:5000");
-});
+// app.listen(5000, () => {
+//     console.log("Listening at localhost:5000");
+// });
 
 //node index.js
 //------
@@ -64,6 +64,11 @@ app.listen(5000, () => {
 // app.listen(process.env.PORT, () => {
 //     console.log("Listening to");
 // });
+
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => {
+    console.log(`Our app is running on port ${ PORT }`);
+});
 
 // git add -A .
 // git commit -m "first commit"
