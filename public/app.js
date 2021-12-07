@@ -1,10 +1,21 @@
+let otherWords;
+let wordsToCheck = [];
+let runCount = 0;
+
+let modal = document.getElementById("myModal");
+let btn = document.getElementById("myBtn");
+let closeBTN = document.getElementsByClassName("close")[0];
+
+let highLightElements = document.getElementsByClassName("highlight");
+
 window.addEventListener('load', () => {
     console.log("loading");
+
     //Display the descriptions from the database
     fetch('/getDescriptions')
         .then(res => res.json())
         .then(data => {
-
+            console.log("We've got the db.")
             let allDescriptions = data.data;
 
             for (let i = 0; i < allDescriptions.length; i++) {
@@ -24,6 +35,17 @@ window.addEventListener('load', () => {
                 }
             }
         })
+        .then(data => {
+            //Get synonyms and antonyms
+            fetch('/send-syn-ant')
+                .then(res => res.json())
+                .then(data => {
+                    console.log("We have the synonyms.")
+                    otherWords = data;;
+                })
+                .then(findSynonyms)
+                .then(makeWordsInteractive)
+        })
 
 
     //For capturing the new descriptions in the database
@@ -34,7 +56,6 @@ window.addEventListener('load', () => {
         let radioButtons = document.getElementsByClassName("description-type");
 
         for (let i = 0; i < radioButtons.length; i++) {
-            console.log(radioButtons[i].checked);
             if (radioButtons[i].checked) {
                 newAttribution = radioButtons[i].value;
             }
@@ -61,6 +82,7 @@ window.addEventListener('load', () => {
 
         if (obj.approved) {
             createNewDescription(obj.description, obj.attribution)
+            getWordsToCheck(obj.description)
         }
 
         let jsonData = JSON.stringify(obj);
@@ -74,6 +96,7 @@ window.addEventListener('load', () => {
         })
             .then(response => response.json())
             .then(data => { console.log(data) })
+
     });
 
 })
@@ -81,7 +104,6 @@ window.addEventListener('load', () => {
 
 //--------------------------------------------------------------
 function createNewDescription(description, attribution) {
-
     let newDiv = document.createElement("div");
     newDiv.className = "description-container"
 
@@ -143,34 +165,26 @@ function createNewDescription(description, attribution) {
 //Modal Box: https://www.w3schools.com/howto/howto_css_modals.asp
 //--------------------------------------------------------------
 
-let modal = document.getElementById("myModal");
-let btn = document.getElementById("myBtn");
-let span = document.getElementsByClassName("close")[0];
-
 btn.onclick = function () {
     modal.style.display = "block";
 }
 
-span.onclick = function () {
+closeBTN.onclick = function () {
     modal.style.display = "none";
 }
 
 window.onclick = function () {
-    if (event.target == modal) {
+    if (Event.target == modal) {
         modal.style.display = "none";
     }
 }
 
-let wordsToCheck = [];
-//Word on timing to make this dynamic!
-getWordsToCheck("Three words: Collaboration, Experimentation, and Community A place that embraces 'learning by doing.' Looking at how technology might augment, improve, and bring delight, utility or meaning into people's lives. The place I went to engage with the newest of the new media.")
 
-function getWordsToCheck(description){
-    console.log("Check me!", description);
+function getWordsToCheck(description) {
     description = description.replace(/[^\w\s]|_/g, "")
-    .replace(/\s+/g, " "); //https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
+        .replace(/\s+/g, " "); //https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
     let newWords = description.split(" ")
-    for (let i = 0; i < newWords.length; i++){
+    for (let i = 0; i < newWords.length; i++) {
         wordsToCheck.push(newWords[i]);
     }
 
@@ -179,147 +193,164 @@ function getWordsToCheck(description){
 
 //https://stackoverflow.com/questions/2450954/how-to-randomize-shuffle-a-javascript-array
 function shuffle(array) { //
-    let currentIndex = array.length,  randomIndex;
-  
+    let currentIndex = array.length, randomIndex;
+
     // While there remain elements to shuffle...
     while (currentIndex != 0) {
-  
-      // Pick a remaining element...
-      randomIndex = Math.floor(Math.random() * currentIndex);
-      currentIndex--;
-  
-      // And swap it with the current element.
-      [array[currentIndex], array[randomIndex]] = [
-        array[randomIndex], array[currentIndex]];
+
+        // Pick a remaining element...
+        randomIndex = Math.floor(Math.random() * currentIndex);
+        currentIndex--;
+
+        // And swap it with the current element.
+        [array[currentIndex], array[randomIndex]] = [
+            array[randomIndex], array[currentIndex]];
     }
-  
+
     return array;
-  }
+}
 
 //--------------------------------------------------------------
-//adding p5 sketch
+//
 
-function windowResized() {
-    resizeCanvas(windowWidth, windowHeight);
-    antImg.width = width;
-    synImg.width = width;
-}
+let wordObjects = [];
 
-let otherWords;
+function findSynonyms() {
+    wordsToCheck.forEach((element => element.toLowerCase()));
 
-let synonyms = [];
-let antonyms = [];
-let backgroundWords = [];
-let bgColor = "white";
-let fontColor = "light-pink";
-let synImg;
-let antImg;
-
-function preload() {
-    otherWords = loadJSON("assets/syn-ant-updated.json", useJSON);
-}
-
-let yPos = document.getElementById("top-banner").clientHeight;
-function setup() {
-    let cnv = createCanvas(windowWidth + 16, displayHeight + 200);
-    cnv.position(0, yPos);
-    cnv.parent("container");
-
-    pixelDensity(1);
-  
-    synImg = getImages(synonyms);
-    antImg = getImages(antonyms);
-    
-    background("white")
-}
-
-function draw() {
-  
-    let radius = 100;
-    image(antImg, 0, 0);
-    let mouseDraw = get(mouseX - radius/2, mouseY - radius/2, radius, radius)
-    image(synImg, 0, 0);
-    image(mouseDraw, mouseX - radius/2, mouseY - radius/2, radius, radius);
-    
-  }
-
-  function mousePressed(){
-      console.log("synonyms:", synonyms);
-      console.log("antonyms:", antonyms);
-  }
-  
-  function drawMask(){
-    fill(255, 255, 255, 50)
-    ellipse(mouseX, mouseY, 40, 40);
-  }
-  
-  function useJSON() {
-
-    console.log("checking these for synonyms:", wordsToCheck);
-    
-    for (let i = 0; i < wordsToCheck.length; i++) {
-      wordsToCheck[i] = wordsToCheck[i].toLowerCase();
-    }
-  
     for (let i = 0; i < otherWords.words.length; i++) {
-      let thisWord = otherWords.words[i];
-  
-      for (let j = 0; j < wordsToCheck.length; j++) {
-        let wordToCheck = wordsToCheck[j];
-        if (thisWord.KEY == wordToCheck) {
-          if (thisWord.SYN) {
-            thisWord.SYN.forEach((element) => synonyms.push(element));
-          }
-  
-          if (thisWord.ANT) {
-            thisWord.ANT.forEach((element) => antonyms.push(element));
-          }
+        let thisWord = otherWords.words[i];
+
+        for (let j = 0; j < wordsToCheck.length; j++) {
+            let wordToCheck = wordsToCheck[j];
+
+            if (thisWord.KEY == wordToCheck) {
+                wordObjects.push(thisWord);
+            }
         }
-      }
     }
-  
-  }
-  
-  function getImages(wordArray) {
-    if (wordArray == synonyms) {
-      backgroundWords = synonyms;
-      bgColor = "white";
-      fontColor = "lightpink";
+
+    console.log("myList!", wordObjects);
+}
+
+function makeWordsInteractive() {
+    let divsToCheck = document.querySelectorAll(".the-description p");
+    for (let i = 0; i < divsToCheck.length; i++) {
+        let myHTML = divsToCheck[i].innerHTML;
+        let newHTML = myHTML;
+
+        let strippedHTML = myHTML.replace(/[^\w\s]|_/g, "")
+            .replace(/\s+/g, " "); //https://stackoverflow.com/questions/4328500/how-can-i-strip-all-punctuation-from-a-string-in-javascript-using-regex
+        strippedHTML = strippedHTML.split(" ")
+
+        for (let i = 0; i < strippedHTML.length; i++) {
+            let divWord = strippedHTML[i].toLowerCase();
+            let spanHTML = divWord;
+            for (let j = 0; j < wordObjects.length; j++) {
+                if (divWord == wordObjects[j].KEY) {
+                    spanHTML = '<span class = "highlight">';
+                    spanHTML = spanHTML + divWord;
+                    spanHTML = spanHTML + '</span>'
+                    newHTML = newHTML.replace(divWord, spanHTML);
+                }
+            }
+        }
+        divsToCheck[i].innerHTML = newHTML;
+        highlightElements = document.getElementsByClassName("highlight");
+
+        Array.from(highlightElements).forEach(function (highlightElements) {
+            highlightElements.addEventListener("click", function () {
+                showSynonyms(event);
+            });
+            highlightElements.addEventListener("mouseout", function () {
+                resetEvents(event);
+            });
+        });
+    }
+}
+
+function showSynonyms(eve) {
+    if (runCount > 0){
+        
     } else {
-      backgroundWords = antonyms;
-      bgColor = "lightpink";
-      fontColor = "white";
+        let triggerWord = eve.target.innerText;
+        console.log(triggerWord);
+        for (let i = 0; i < wordObjects.length; i++) {
+            if (triggerWord == wordObjects[i].KEY) {
+                eve.srcElement.id = wordObjects[i].KEY;
+                let index;
+    
+                if (wordObjects[i].ANT) {
+                    let whichOne = (Math.floor(Math.random() * 2) == 0);
+                    if (whichOne) {
+                        index = Math.floor(Math.random() * (wordObjects[i].SYN.length - 1));
+    
+                        eve.srcElement.className = "highlightSyn";
+                        eve.srcElement.innerText = wordObjects[i].SYN[index];
+                        updateEventListeners();
+    
+                    } else {
+                        index = Math.floor(Math.random() * (wordObjects[i].ANT.length - 1));
+    
+                        eve.srcElement.className = "highlightAnt";
+                        eve.srcElement.innerText = wordObjects[i].ANT[index];
+                        updateEventListeners();
+                    }
+    
+                } else {
+                    index = Math.floor(Math.random() * (wordObjects[i].SYN.length - 1));
+    
+                    eve.srcElement.innerText = wordObjects[i].SYN[index];
+                    eve.srcElement.className = "highlightSyn";
+                    updateEventListeners();
+                }
+    
+    
+            } else if (eve.srcElement.id == wordObjects[i].KEY) {
+                eve.target.innerText = wordObjects[i].KEY;
+                eve.srcElement.className = "highlight"
+                updateEventListeners();
+            }
+        }
     }
-  
-    fill(bgColor);
-    noStroke();
-    rect(0, 0, width, height);
-    fill(fontColor);
-  
-    let lineHeight = 60;
-  
-    push();
-    translate(width / 2, height / 2);
-    translate(-width / 2, -height / 2);
-  
-    let wordLine = "";
-    for (let i = 0; i < backgroundWords.length; i++) {
-      wordLine = wordLine + backgroundWords[i] + "                ";
-    }
-  
-    for (let i = 0; i < 10; i++) {
-      wordLine = wordLine + wordLine;
-    }
-  
-    textWrap(WORD);
-    textLeading(lineHeight);
-    textSize(14);
-    text(wordLine, -10, 0, width + 100, height + lineHeight);
-  
-    pop();
-  
-    let img = get();  
-    return img;
-  }
-  
-  
+    
+    runCount++;
+
+}
+
+function resetEvents(){
+    runCount = 0;
+    updateEventListeners();
+}
+
+function updateEventListeners() {
+    let elements = document.getElementsByClassName("highlightAnt");
+    Array.from(elements).forEach(function (elements) {
+        elements.addEventListener("click", function () {
+            showSynonyms(event);
+        });
+        elements.addEventListener("mouseout", function () {
+            resetEvents(event);
+        });
+    });
+
+    elements = document.getElementsByClassName("highlightSyn");
+    Array.from(elements).forEach(function (elements) {
+        elements.addEventListener("click", function () {
+            showSynonyms(event);
+        });
+        elements.addEventListener("mouseout", function () {
+            resetEvents(event);
+        });
+    });
+
+    elements = document.getElementsByClassName("highlight");
+    Array.from(elements).forEach(function (elements) {
+        elements.addEventListener("click", function () {
+            showSynonyms(event);
+        });
+        elements.addEventListener("mouseout", function () {
+            resetEvents(event);
+        });
+    });
+}

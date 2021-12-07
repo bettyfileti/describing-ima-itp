@@ -53,6 +53,7 @@ canvas {
     line-height: 24px;
     text-transform: uppercase;
     color: #FFFFFF;
+    filter: drop-shadow(0px 0px 2px #2a2a2c)
 }
 
 .btn:hover, .btn:focus {
@@ -183,8 +184,64 @@ canvas {
     letter-spacing: .25px;
 }
 
+.floatingButtonWrap {
+    display: block;
+    position: fixed;
+    bottom: 45px;
+    right: 45px;
+    z-index: 999999999;
+}
+
+.floatingButtonInner {
+    position: relative;
+}
+
 .test {
     border: 4px solid red;
+}
+
+.highlight {
+    color:black;
+    /* -webkit-text-fill-color: transparent; */
+    -webkit-text-stroke-width: 1.1px;
+    -webkit-text-stroke-color: #000;
+    transition: all 0.3s ease-in-out;
+    text-shadow: 0px 0px rgb(255 255 55 / 80%), 0px 0px rgb(0 225 255 / 50%);
+}
+
+.highlight:hover{
+    -webkit-text-fill-color: transparent;
+    cursor: crosshair;
+    -webkit-text-stroke-color: #c607b6;
+    text-shadow: -6px 3px rgb(255 255 55 / 80%), 6px -3px rgb(0 225 255 / 50%);
+}
+
+.highlightAnt{
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1.1px;
+    -webkit-text-stroke-color: #0f0095;
+    text-shadow: -6px 3px rgb(255 255 55 / 80%), 6px -3px rgb(0 225 255 / 50%);
+    transition: all 0.3s ease-in-out;
+
+}
+
+.highlightAnt:hover{
+    cursor: crosshair;
+    text-shadow: 0px 0px rgb(255 255 55 / 80%), 0px 0px rgb(0 225 255 / 50%);
+}
+
+.highlightSyn{
+    -webkit-text-fill-color: transparent;
+    -webkit-text-stroke-width: 1.1px;
+    -webkit-text-stroke-color: #ad0396;
+    text-shadow: -6px 3px rgb(255 255 55 / 80%), 6px -3px rgb(0 225 255 / 50%);
+    transition: all 0.3s ease-in-out;
+
+}
+
+.highlightSyn:hover{
+    cursor: crosshair;
+    text-shadow: 0px 0px rgb(255 255 55 / 80%), 0px 0px rgb(0 225 255 / 50%);
 }
 
 /* -------------------------------------------------------------- */
@@ -194,7 +251,7 @@ canvas {
     width: 100vw;
     display: flex;
     justify-content: center;
-    margin-top: 72px;
+    margin-top: 40px;
     top: 0px;
     left: 0px;
 }
@@ -224,7 +281,7 @@ canvas {
 }
 
 #header {
-    margin-bottom: 64px;
+    margin-bottom: 16px;
 }
 
 /* -------------------------------------------------------------- */
